@@ -1,2 +1,3 @@
 # webpack-dep
-Using webpack get dependencies and dependents.
+
+Using webpack get dependencies.

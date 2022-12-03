@@ -1,0 +1,39 @@
+{
+  "name": "webpack-dep",
+  "version": "0.0.0",
+  "author": "Jufeng Zhang",
+  "type": "module",
+  "bin": "./dist/cli.js",
+  "main": "./cjs/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./cjs/index.cjs"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "yarn run build && yarn run test",
+    "start": "yarn run watch",
+    "build": "tsc && rollup -c",
+    "watch": "tsc --watch",
+    "test": "echo \"todo test\""
+  },
+  "files": [
+    "dist",
+    "cjs"
+  ],
+  "dependencies": {
+    "ana-loader": "^0.1.0",
+    "commander": "^9.4.1",
+    "webpack": "^5.64.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^10.0.1",
+    "@types/fs-extra": "^9.0.13",
+    "rollup": "^3.5.0",
+    "typescript": "^4.9.3"
+  }
+}
