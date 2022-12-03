@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
 
 export default async function (name) {
-  if (typeof require.resolve === "function") {
+  if (typeof require?.resolve === "function") {
     return require.resolve(name);
   }
 

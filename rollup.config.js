@@ -15,6 +15,9 @@ const configs = [
       file: "cjs/index.cjs",
       format: "cjs",
       exports: "named",
+      // Inline sourcemap for jest
+      // See: https://github.com/facebook/jest/issues/336#issuecomment-376228890
+      sourcemap: "inline",
       globals: {},
     },
     plugins: [typescript({ compilerOptions: { declaration: false } })],

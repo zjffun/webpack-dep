@@ -42,7 +42,7 @@ export default async function ({ entry, excludes, appDirectory }: IOptions) {
     module: {
       rules: [
         {
-          loader: await resolvePkg("dep-loader"),
+          loader: await resolvePkg("ana-loader"),
           options: {
             excludes,
           },

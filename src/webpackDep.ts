@@ -3,7 +3,9 @@ import getDependencyMap from "./getDependencyMap.js";
 import { DepMap, IOptions } from "./types.js";
 import configFactory from "./webpack.config.js";
 
-export default async function generate(options: IOptions): Promise<DepMap> {
+export default async function generate(
+  options: IOptions = {}
+): Promise<DepMap> {
   const config = await configFactory(options);
 
   const compiler = webpack(config);

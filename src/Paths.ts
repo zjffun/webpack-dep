@@ -23,7 +23,9 @@ export default class {
   appDirectory = fs.realpathSync(process.cwd());
 
   constructor(appDirectory?: string) {
-    this.appDirectory = appDirectory;
+    if (appDirectory) {
+      this.appDirectory = appDirectory;
+    }
   }
 
   get appPath() {
