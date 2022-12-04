@@ -1,5 +1,3 @@
-# Change Log
-
 # v0.2.0
 
 Add features update default excludes and default entry.
