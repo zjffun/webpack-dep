@@ -1,7 +1,9 @@
 import { Configuration } from "webpack";
-import Paths, { appBuild, moduleFileExtensions } from "./Paths.js";
+import Paths, { appBuild } from "./Paths.js";
 import resolvePkg from "./resolvePkg.js";
 import { IOptions } from "./types.js";
+
+const defaultExcludes = [/node_modules/];
 
 export default async function ({ entry, excludes, appDirectory }: IOptions) {
   const paths = new Paths(appDirectory);
@@ -9,7 +11,7 @@ export default async function ({ entry, excludes, appDirectory }: IOptions) {
   const config: Configuration = {
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
-    entry: entry || paths.appIndexJs,
+    entry: entry || paths.appEntryPoints,
     mode: "none",
     devtool: false,
     output: {
@@ -28,7 +30,20 @@ export default async function ({ entry, excludes, appDirectory }: IOptions) {
       // https://github.com/facebook/create-react-app/issues/290
       // `web` extension prefixes have been added for better support
       // for React Native Web.
-      extensions: moduleFileExtensions.map((ext) => `.${ext}`),
+      extensions: [
+        ".web.mjs",
+        ".mjs",
+        ".web.js",
+        ".js",
+        ".web.ts",
+        ".ts",
+        ".web.tsx",
+        ".tsx",
+        ".json",
+        ".web.jsx",
+        ".jsx",
+        ".vue",
+      ],
       alias: {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
@@ -44,7 +59,7 @@ export default async function ({ entry, excludes, appDirectory }: IOptions) {
         {
           loader: await resolvePkg("ana-loader"),
           options: {
-            excludes,
+            excludes: excludes || defaultExcludes,
           },
         },
       ],

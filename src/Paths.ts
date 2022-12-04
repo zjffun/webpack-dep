@@ -2,22 +2,20 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 
-export const moduleFileExtensions = [
-  "web.mjs",
-  "mjs",
-  "web.js",
-  "js",
-  "web.ts",
-  "ts",
-  "web.tsx",
-  "tsx",
-  "json",
-  "web.jsx",
-  "jsx",
-  "vue",
-];
-
 export const appBuild = path.join(os.tmpdir(), "vscode-dep-app-build");
+
+const entryPoints = [
+  "src/index.ts",
+  "src/index.js",
+  "src/index.tsx",
+  "src/index.jsx",
+  "src/index.vue",
+  "src/main.ts",
+  "src/main.js",
+  "src/main.tsx",
+  "src/main.jsx",
+  "src/main.vue",
+];
 
 export default class {
   appDirectory = fs.realpathSync(process.cwd());
@@ -32,8 +30,8 @@ export default class {
     return this.resolveApp(".");
   }
 
-  get appIndexJs() {
-    return this.resolveModule("src/index");
+  get appEntryPoints() {
+    return entryPoints.map((d) => this.resolveApp(d));
   }
 
   get appSrc() {
@@ -46,15 +44,5 @@ export default class {
 
   resolveApp(relativePath) {
     return path.resolve(this.appDirectory, relativePath);
-  }
-
-  resolveModule(filePath) {
-    const extension = moduleFileExtensions.find((extension) =>
-      fs.existsSync(this.resolveApp(`${filePath}.${extension}`))
-    );
-
-    if (extension) {
-      return this.resolveApp(`${filePath}.${extension}`);
-    }
   }
 }
