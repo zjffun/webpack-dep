@@ -20,13 +20,18 @@ export default async function generate(
         return reject(Error("No stats"));
       }
 
-      const statsModules = stats.toJson({
+      const statsInfo = stats.toJson({
         assets: false,
         chunks: false,
-        errors: false,
         warnings: false,
         modules: true,
-      }).modules;
+      });
+
+      const statsModules = statsInfo.modules;
+
+      if (options?.errorCb && statsInfo.errors.length > 0) {
+        options.errorCb(statsInfo.errors);
+      }
 
       const dependencyMap = getDependencyMap(statsModules);
 
