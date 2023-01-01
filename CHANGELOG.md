@@ -1,3 +1,7 @@
+# 0.3.0
+
+Add features support the `webpackConfig` option.
+
 # v0.2.1
 
 Add features error callback.

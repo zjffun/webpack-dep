@@ -5,13 +5,13 @@ import { IOptions } from "./types.js";
 
 const defaultExcludes = [/node_modules/];
 
-export default async function ({ entry, excludes, appDirectory }: IOptions) {
+export default async function ({ webpackConfig, excludes, appDirectory }: IOptions) {
   const paths = new Paths(appDirectory);
 
-  const config: Configuration = {
+  let config: Configuration = {
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
-    entry: entry || paths.appEntryPoints,
+    entry: paths.appEntryPoints,
     mode: "none",
     devtool: false,
     output: {
@@ -49,6 +49,8 @@ export default async function ({ entry, excludes, appDirectory }: IOptions) {
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",
         "@": paths.appSrc,
+        // NestJS
+        "src": paths.appSrc,
       },
       extensionAlias: {
         ".js": [".js", ".ts"],
@@ -67,6 +69,10 @@ export default async function ({ entry, excludes, appDirectory }: IOptions) {
     // Turn off performance processing
     performance: false,
   };
+
+  if (webpackConfig) {
+    config = webpackConfig(config);
+  }
 
   return config;
 }

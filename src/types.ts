@@ -1,10 +1,10 @@
-import { StatsError } from "webpack";
+import { Configuration, StatsError } from "webpack";
 
 export type DepMap = Map<string, Set<string>>;
 
 export interface IOptions {
-  entry?: string | string[];
   excludes?: string[];
   appDirectory?: string;
+  webpackConfig?: (config: Configuration) => Configuration;
   errorCb?: (errors: StatsError[]) => void;
 }
