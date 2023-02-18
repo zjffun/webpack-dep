@@ -1,3 +1,7 @@
+# 0.4.0
+
+Add features analyzing dependencies of HTML and `url()`.
+
 # 0.3.0
 
 Add features support the `webpackConfig` option.
