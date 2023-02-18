@@ -1,7 +1,12 @@
 {
   "name": "webpack-dep",
   "version": "0.3.0",
+  "description": "Using webpack get dependencies.",
+  "license": "MIT",
+  "repository": "zjffun/webpack-dep",
   "author": "Jufeng Zhang",
+  "homepage": "https://github.com/zjffun/webpack-dep",
+  "bugs": "https://github.com/zjffun/webpack-dep/issues",
   "type": "module",
   "bin": "./dist/cli.js",
   "main": "./cjs/index.cjs",
@@ -13,7 +18,6 @@
     }
   },
   "types": "./dist/index.d.ts",
-  "license": "MIT",
   "scripts": {
     "prepublishOnly": "yarn run build && yarn run test",
     "start": "yarn run watch",
