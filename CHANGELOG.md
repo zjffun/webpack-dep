@@ -1,3 +1,7 @@
+# 0.4.1
+
+Update `ana-loader`.
+
 # 0.4.0
 
 Add features analyzing dependencies of HTML and `url()`.
