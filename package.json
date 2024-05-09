@@ -30,7 +30,7 @@
     "cjs"
   ],
   "dependencies": {
-    "ana-loader": "^0.2.2",
+    "ana-loader": "^0.2.3",
     "commander": "^9.4.1",
     "tslib": "^2.6.2",
     "webpack": "^5.64.4"

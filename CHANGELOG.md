@@ -1,3 +1,7 @@
+# 0.4.2
+
+Update `ana-loader`.
+
 # 0.4.1
 
 Update `ana-loader`.
